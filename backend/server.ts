@@ -48,8 +48,15 @@ app.post('/register', async (req: any, res: any) => {
     }
 })
 
-app.post('/verify', (req, res) => {
+app.post('/verify', async (req, res) => {
+    const {token, id} = req.body;
+    try {
+        const user = await User.findOne({id})
 
+    }
+    catch (err) {
+        res.status(500)
+    }
 })
 
 
