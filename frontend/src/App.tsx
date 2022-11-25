@@ -29,11 +29,11 @@ function App() {
 				password,
 			}),
 		})
+    
 
 		const data = await response.json()
-
         if (data.status === 'OK') {
-            
+            localStorage.setItem('REGISTAR', data.secret)
         }
     }
 
