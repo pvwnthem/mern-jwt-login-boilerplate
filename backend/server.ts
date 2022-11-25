@@ -7,7 +7,7 @@ import config from "./config";
 import speakeasy from 'speakeasy';
 import { v4 as uuidv4 } from 'uuid';
 import User from './models/user'
-
+import bodyParser from 'body-parser'
 
 const app = express()
 const PORT = process.env.PORT || 5000
@@ -16,7 +16,8 @@ const PORT = process.env.PORT || 5000
 
 app.use(cors())
 app.use(express.json())
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 mongoose.connect(config.MONGO_URI)
 
 app.get('/', (req: any, res: any) => {
@@ -69,7 +70,8 @@ app.post('/verify', async (req, res) => {
 
     }
     catch (err) {
-        res.status(500)
+        console.log(err)
+        res.status(500).json({err: err})
     }
 })
 
