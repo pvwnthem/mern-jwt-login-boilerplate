@@ -23,6 +23,7 @@
     "mongoose": "^6.1.3"
   },
   "devDependencies": {
+    "@types/dotenv": "^8.2.0",
     "nodemon": "^2.0.15"
   }
 }

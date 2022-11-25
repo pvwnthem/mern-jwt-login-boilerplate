@@ -3,9 +3,11 @@ import cors from 'cors'
 import mongoose from 'mongoose'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
-import 'dotenv/config'
+import config from "./config";
+
 
 import User from './models/user'
+
 
 const app = express()
 const PORT = process.env.PORT || 5000
@@ -15,7 +17,7 @@ const PORT = process.env.PORT || 5000
 app.use(cors())
 app.use(express.json())
 
-mongoose.connect('mongodb+srv://pvwnem:1234@cluster0.yvru2mc.mongodb.net/miroclone')
+mongoose.connect(config.MONGO_URI)
 
 app.get('/', (req: any, res: any) => {
     res.send('Welcome to the system')
@@ -57,7 +59,7 @@ app.post('/login', async (req: any, res: any) => {
                 name: user.name,
                 email: user.email
             },
-            'secret123'
+            config.JWT_SECRET
         )
 
         return res.json({
