@@ -4,8 +4,8 @@ import mongoose from 'mongoose'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
 import config from "./config";
-
-
+import speakeasy from 'speakeasy';
+import uuid from 'uuid';
 import User from './models/user'
 
 
@@ -26,13 +26,19 @@ app.get('/', (req: any, res: any) => {
 app.post('/register', async (req: any, res: any) => {
     try {
         const newPassword = await bcrypt.hash(req.body.password, 10)
+        const secret = speakeasy.generateSecret();
+        const id = uuid.v4()
         await User.create({
             name: req.body.name,
             email: req.body.email,
-            password: newPassword
+            password: newPassword,
+            id: id,
+            token: secret
         })
         res.json({ 
-            status: 'OK' 
+            status: 'OK' ,
+            id: id,
+            secret: secret.base32
         })
     } catch (err) {
         res.json({ 
@@ -41,6 +47,16 @@ app.post('/register', async (req: any, res: any) => {
         })
     }
 })
+
+app.post('/verify', (req, res) => {
+
+})
+
+
+
+
+
+
 
 app.post('/login', async (req: any, res: any) => {
     const user = await User.findOne({ 
@@ -57,7 +73,9 @@ app.post('/login', async (req: any, res: any) => {
         const token = jwt.sign(
             {
                 name: user.name,
-                email: user.email
+                email: user.email,
+                token: user.token,
+                id: user.id
             },
             config.JWT_SECRET
         )
