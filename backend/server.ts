@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
 import config from "./config";
 import speakeasy from 'speakeasy';
-import uuid from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import User from './models/user'
 
 
@@ -26,8 +26,8 @@ app.get('/', (req: any, res: any) => {
 app.post('/register', async (req: any, res: any) => {
     try {
         const newPassword = await bcrypt.hash(req.body.password, 10)
-        const secret = speakeasy.generateSecret();
-        const id = uuid.v4()
+        const secret = speakeasy.generateSecret().base32;
+        const id = uuidv4()
         await User.create({
             name: req.body.name,
             email: req.body.email,
@@ -38,13 +38,14 @@ app.post('/register', async (req: any, res: any) => {
         res.json({ 
             status: 'OK' ,
             id: id,
-            secret: secret.base32
+            secret: secret
         })
     } catch (err) {
         res.json({ 
             status: 'error',
             error: err
         })
+        console.error(err)
     }
 })
 
