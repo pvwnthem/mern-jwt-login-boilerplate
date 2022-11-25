@@ -1,68 +1,31 @@
-import React, { useState } from 'react'
-import { useNavigate} from 'react-router-dom'
+import React, { Component } from 'react'
+import Navigation from './components/navigation'
 
-function App() {
-   
+type Props = {}
 
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+type State = {}
 
-    const registerUser = async (event:any) => {
-        event.preventDefault()
-        // const body = {
-        //     name: name,
-        //     email: email,
-        //     password: password
-        // }
-        // const response = await axios.post('https://localhost:5000/register', body)
-        // const data = await response.data
+class App extends Component<Props, State> {
+  state = {}
 
-        const response = await fetch('http://localhost:5000/register', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				name,
-				email,
-				password,
-			}),
-		})
-    
-
-		const data = await response.json()
-        if (data.status === 'OK') {
-            localStorage.setItem('REGISTAR', data.secret)
-        }
-    }
-
+  render() {
     return (
-        <div>
-            <h1>Register</h1>
-            <form onSubmit={registerUser}>
-                <input 
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    type="text"
-                    placeholder="Name"
-                />
-                <input 
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    type="email"
-                    placeholder="Email"
-                />
-                <input 
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    type="password"
-                    placeholder="Password"
-                />
-                <input type="submit" value="Register" />
-            </form>
-        </div>
+      <>
+        <Navigation />
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      </>
     )
+  }
 }
 
-export default App;
+export default App
