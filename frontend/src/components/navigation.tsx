@@ -43,7 +43,7 @@ class Navigation extends Component<Props, State> {
                 <span className="sr-only">Open menu</span>
                 {/* Heroicon name: outline/menu */}
                 <svg
-                  className="h-6 w-6"
+                  className="h-8 w-8"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -508,47 +508,8 @@ class Navigation extends Component<Props, State> {
                       </a>
                     </div>
                     <div className="px-5 py-5 bg-gray-50 sm:px-8 sm:py-8">
-                      <div>
-                        <h3 className="text-sm tracking-wide font-medium text-gray-500 uppercase">
-                          Recent Posts
-                        </h3>
-                        <ul className="mt-4 space-y-4">
-                          <li className="text-base truncate">
-                            <a
-                              href="#"
-                              className="font-medium text-gray-900 hover:text-gray-700"
-                            >
-                              Boost your conversion rate
-                            </a>
-                          </li>
-                          <li className="text-base truncate">
-                            <a
-                              href="#"
-                              className="font-medium text-gray-900 hover:text-gray-700"
-                            >
-                              How to use search engine optimization to drive
-                              traffic to your site
-                            </a>
-                          </li>
-                          <li className="text-base truncate">
-                            <a
-                              href="#"
-                              className="font-medium text-gray-900 hover:text-gray-700"
-                            >
-                              Improve your customer experience
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                      <div className="mt-5 text-sm">
-                        <a
-                          href="#"
-                          className="font-medium text-indigo-600 hover:text-indigo-500"
-                        >
-                          {" "}
-                          View all posts <span aria-hidden="true">→</span>
-                        </a>
-                      </div>
+                      
+                      
                     </div>
                   </div>
                 </div>
@@ -809,7 +770,7 @@ class Navigation extends Component<Props, State> {
                 </a>
                 <p className="mt-6 text-center text-base font-medium text-gray-500">
                   Existing customer?
-                  <a href="#" className="text-indigo-600 hover:text-indigo-500">
+                  <a href="#" className="px-2 text-indigo-600 hover:text-indigo-500">
                     Sign in
                   </a>
                 </p>
