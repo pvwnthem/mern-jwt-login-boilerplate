@@ -53,6 +53,19 @@ app.post('/verify', async (req, res) => {
     const {token, id} = req.body;
     try {
         const user = await User.findOne({id})
+        const secret = user.token
+        const verified =speakeasy.totp.verify({
+            secret,
+            encoding: 'base32',
+            token,
+
+        })
+        if (verified) {
+            await User.findOneAndUpdate({id}, {verified: true})
+            res.json({verified: true})
+        } else {
+            res.json({verified: false})
+        }
 
     }
     catch (err) {
