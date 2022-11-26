@@ -1,31 +1,17 @@
-import React, { Component } from 'react'
+import React, { Component, useEffect, useState } from 'react'
 import Navigation from './components/navigation'
 
-type Props = {}
+import "./App.css";
+import { ethers } from "ethers";
 
-type State = {}
+function App() {
+  
 
-class App extends Component<Props, State> {
-  state = {}
-
-  render() {
-    return (
-      <>
-        <Navigation />
+  return (
+    <div>
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      </>
-    )
-  }
+    </div>
+  );
 }
 
-export default App
+export default App;
